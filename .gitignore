@@ -132,3 +132,6 @@ dmypy.json
 # vscode & wandb
 .vscode/
 wandb/
+
+# model exp
+exp/
