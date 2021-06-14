@@ -164,7 +164,7 @@ class TorchTrainer:
                 self.model.load_state_dict(state_dict)
                 running_loss, correct, total = 0.0, 0, 0
                 preds, gt = [], []
-                #train_dataset_array = next(iter(train_dataloader_list[fold]))[0].numpy()
+                
                 
                 leng = len(train_dataloader_list[fold])
                 pbar = tqdm(enumerate(train_dataloader_list[fold]), total=len(train_dataloader_list[fold]))
@@ -204,11 +204,14 @@ class TorchTrainer:
                         f"F1(macro): {f1_score(y_true=gt, y_pred=preds, labels=label_list, average='macro', zero_division=0):.2f}"
                     )
                     wandb.log(self.optimizer.state_dict()['param_groups'][0])
-                    #wandb.log({"examples": [wandb.Image(data, caption=labels)]})
                     wandb.log({"epoch": epoch, f"Loss_{fold}":(running_loss / (batch + 1)),
                                f"Acc_{fold}":(correct / total) * 100,
                                "foldstep": epoch*leng+batch,
                                f"F1(macro)_{fold}":f1_score(y_true=gt, y_pred=preds, labels=label_list, average='macro', zero_division=0)})
+                    wandb.log({"epoch": epoch, f"Loss":(running_loss / (batch + 1)),
+                               f"Acc":(correct / total) * 100,
+                               "foldstep": epoch*leng+batch,
+                               f"F1(macro)":f1_score(y_true=gt, y_pred=preds, labels=label_list, average='macro', zero_division=0)})
                 pbar.close()
                 
                 _, test_f1, test_acc = self.test(
@@ -218,6 +221,8 @@ class TorchTrainer:
                 f1_list.append(test_f1)
                 wandb.log({"epoch": epoch, f"test_acc_{fold}": test_acc,
                            f"test_f1_{fold}": test_f1})
+                wandb.log({"epoch": epoch, f"test_acc": test_acc,
+                           f"test_f1": test_f1})
                 state_dict_list.append(self.model.state_dict())
 #                 for x in list(state_dict.keys()): 
 #                     if(x in state_dict_fold): state_dict_fold[x] += self.model.state_dict()[x]
