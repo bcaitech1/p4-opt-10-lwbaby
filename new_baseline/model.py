@@ -138,7 +138,7 @@ def test(model: nn.Module,
     Args:
         test_dataloader: test data loader module which is a iterator that returns (data, labels)
         num_classes : number of classes
-        scaler : 
+        scaler : torch cuda amp GradScaler
 
     Returns:
         loss, f1, accuracy
