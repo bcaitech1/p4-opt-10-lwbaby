@@ -41,6 +41,8 @@
  
  f1 loss를 Cross Entropy loss와 함께 사용해 약간의 성능 향상을 볼 수 있었습니다.
  
+ f1 loss는 [링크](https://gist.github.com/SuperShinyEyes/dcc68a08ff8b615442e3bc6a9b55a354)의 코드를 사용하였습니다.
+ 
  또한 성능 향상 효과는 볼 수 없었지만 KL divergence를 이용한 distillation loss도 구현되어 있습니다.
  
  KL_distillation_loss는 다음과 같이 선언합니다.
