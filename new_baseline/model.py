@@ -10,6 +10,12 @@ from tqdm.auto import tqdm
 from loss import KL_distillation_loss
 
 def copy_pretrained_weight(model, model_name, freeze_backbone=False):
+    """copy pretrained weight to model
+    Args:
+        model : The model whose weight ​​are to be updated
+        model_name : model name
+        freeze_backbone (bool, optional): Whether to freeze the weight of the backbone, Defaults to False.
+    """
     pretrained_model = getattr(
         torchvision.models, model_name
     )(pretrained=True)
@@ -36,8 +42,15 @@ def train_model(model: nn.Module,
     """Train model.
 
     Args:
+        model: model to train
+        train_config: train config dict
         train_dataloader: data loader module which is a iterator that returns (data, labels)
+        criterion: loss fn
+        optimizer: optimizer
+        scheduler: learning rate scheduler
+        model_path: absolute path to save model's state dict
         val_dataloader: dataloader for validation
+        device: device on which run model
     """
     scaler = (
         torch.cuda.amp.GradScaler() if train_config["FP16"] and device != torch.device("cpu") else None
@@ -124,6 +137,8 @@ def test(model: nn.Module,
 
     Args:
         test_dataloader: test data loader module which is a iterator that returns (data, labels)
+        num_classes : number of classes
+        scaler : torch cuda amp GradScaler
 
     Returns:
         loss, f1, accuracy
