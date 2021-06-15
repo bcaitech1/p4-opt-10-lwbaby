@@ -45,7 +45,7 @@ class F1_Loss(nn.Module):
 
 
 class F1_loss_and_softmax(nn.Module):
-    def __init__(self, epsilon, num_classes, alpha=0.5):
+    def __init__(self, num_classes, epsilon=1e-7, alpha=0.5):
         super(F1_loss_and_softmax, self).__init__()
         self.F1_loss = F1_Loss(epsilon=epsilon, num_classes=num_classes)
         self.CE_loss = nn.CrossEntropyLoss()
