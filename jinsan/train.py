@@ -20,6 +20,7 @@ from src.trainer import TorchTrainer
 from src.utils.common import get_label_counts, read_yaml, set_seed
 from src.utils.macs import calc_macs
 from src.utils.torch_utils import check_runtime, model_info
+from src.decomposition import tucker_decomposition_conv_layer, get_tucker_decomposed
 
 
 def train(
@@ -41,7 +42,15 @@ def train(
     print(f"Model save path: {model_path}")
     if os.path.isfile(model_path):
         model_instance.model.load_state_dict(torch.load(model_path, map_location=device))
+    
+    # model_instance.model = get_tucker_decomposed(model_instance.model)
+    # for layer in model_instance.model:
+    #     layer = get_tucker_decomposed(layer)
+    for i in range(10):
+        model_instance.model[i] = get_tucker_decomposed(model_instance.model[i])
+    # model_instance.model[1] = get_tucker_decomposed(model_instance.model[1])
     model_instance.model.to(device)
+    print(model_instance.model)
 
     # Create dataloader
     train_dl, val_dl, test_dl = create_dataloader(data_config)
@@ -100,10 +109,10 @@ def train(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train model.")
     parser.add_argument(
-        "--model", default="/opt/ml/code/configs/model/mobilenetv3_small.yaml", type=str, help="model config"
+        "--model", default="/opt/ml/p4-opt-10-lwbaby/jinsan/configs/model/mobilenetv3.yaml", type=str, help="model config"
     )
     parser.add_argument(
-        "--data", default="/opt/ml/code/configs/data/taco.yaml", type=str, help="data config"
+        "--data", default="/opt/ml/p4-opt-10-lwbaby/jinsan/configs/data/taco.yaml", type=str, help="data config"
     )
     args = parser.parse_args()
 

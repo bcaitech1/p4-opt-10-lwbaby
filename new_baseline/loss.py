@@ -94,7 +94,8 @@ class KL_distillation_loss(nn.Module):
                                     reduction='batchmean')
         self.running_distillation_loss += distillation_loss
 
-        total_loss = (1-self.alpha) * student_loss + self.alpha * distillation_loss
+        total_loss = (1-self.alpha) * student_loss + \
+                      self.alpha * self.tau * self.tau * distillation_loss
         
         return total_loss
 
