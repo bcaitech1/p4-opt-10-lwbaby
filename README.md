@@ -25,7 +25,7 @@ stage4 및 Conv-BN-ReLU 레이어 제거
 
 # Configs
 ## Data Configs
-- Image size: 64 x 64 
+- Image size: 64 x 64  
 backbone의 pretraining에 사용된 image size는 224 x 224이며, 모델 경량화를 위해 작은 이미지를 사용한다.
 ## Training Configs
 -	Criterion: CrossEntropyLoss (Pytorch)
