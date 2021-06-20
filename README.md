@@ -16,10 +16,10 @@
 
 # Model Overview
 **Backbone**:  
-- ShuffleNet V2의 채널을 반으로 줄인 모델
-- torchvision의 pretrained 모델 사용
+- ShuffleNet V2의 채널을 반으로 줄인 모델  
+- torchvision의 pretrained 모델 사용  
 **구조 변경**:  
-stage4 및 Conv-BN-ReLU 레이어 제거
+stage4 및 Conv-BN-ReLU 레이어 제거  
 ![image](https://user-images.githubusercontent.com/66929142/122687812-5e3b5f80-d253-11eb-967c-ceb62cb879ab.png)
 
 # Configs
