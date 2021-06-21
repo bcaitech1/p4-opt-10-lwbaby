@@ -77,7 +77,7 @@ class KL_distillation_loss(nn.Module):
     
     def forward(self, y_pred, y_true, input_data):
         # calc student loss
-        student_outputs = F.log_softmax(y_pred/self.Tau, dim=1)
+        student_outputs = F.log_softmax(y_pred/self.tau, dim=1)
         student_loss = self.student_loss(y_pred, y_true)
         self.running_student_loss += student_loss
 
@@ -86,7 +86,7 @@ class KL_distillation_loss(nn.Module):
             teacher_outputs = self.teacher_model(input_data)
 
         teacher_outputs = torch.squeeze(teacher_outputs)
-        teacher_outputs = F.softmax(teacher_outputs/self.Tau, dim=1)
+        teacher_outputs = F.softmax(teacher_outputs/self.tau, dim=1)
 
         # calc distillation_loss
         distillation_loss = F.kl_div(input=student_outputs, 
