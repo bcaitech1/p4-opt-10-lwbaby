@@ -28,10 +28,6 @@
  ```bash
  $ python train.py --train_name test_train --train_config train_config/example.yaml
  ```
- 
- wandb의 sweep을 이용한 hyper-parameter optimization  
- ![image](https://user-images.githubusercontent.com/66929142/122791498-3cde8000-d2f4-11eb-9097-4cba45030bd9.png)  
- ![image](https://user-images.githubusercontent.com/66929142/122791516-40720700-d2f4-11eb-8614-3a8c86473a19.png)  
 
 ## model.py
  이 파일에는 모델을 학습시키는 코드와 모델의 사전학습된 가중치를 업데이트하는 코드가 구현되어 있습니다.
@@ -41,10 +37,6 @@
  그래서 사전학습된 백본의 가중치를 업데이트할 수 있도록 코드를 구현하였습니다.
  
  또한 이 과정에서 백본을 고정하여 백본의 학습이 되지 않도록 설정할 수 있습니다.
- 
- Tucker Decomposition for Conv Layer  
- 분해할 conv layer가 model의 0번째 레이어인 경우의 예시입니다.   
- ![image](https://user-images.githubusercontent.com/66929142/122791848-90e96480-d2f4-11eb-991e-26111b0f343a.png)
 
 ## dataloader.py
  ```DataLoader```를 만드는 코드가 구현되어 있습니다.
