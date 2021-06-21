@@ -1,0 +1,25 @@
+project: opt_sweep
+entity: ipari3 
+program: train_sweep.py # (required) Training script to run.
+method: bayes # (required) Specify the search strategy; random/grid/Bayes
+metric:
+  name: score_sum
+  goal: minimize
+parameters:
+  epochs:
+    value: 50
+  learning_rate:
+    min: 0.000001
+    max: 0.001
+  pct_start:
+    min: 0.05
+    max: 0.35
+  weight_decay:
+    min: 0.0001
+    max: 0.05
+  img_size:
+    distribution: q_uniform
+    min: 32
+    max: 64
+    q: 2
+
