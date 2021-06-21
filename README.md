@@ -29,6 +29,10 @@
  $ python train.py --train_name test_train --train_config train_config/example.yaml
  ```
  
+ wandb의 sweep을 이용한 hyper-parameter optimization
+ ![image](https://user-images.githubusercontent.com/66929142/122791498-3cde8000-d2f4-11eb-9097-4cba45030bd9.png)
+ ![image](https://user-images.githubusercontent.com/66929142/122791516-40720700-d2f4-11eb-8614-3a8c86473a19.png)
+
 ## model.py
  이 파일에는 모델을 학습시키는 코드와 모델의 사전학습된 가중치를 업데이트하는 코드가 구현되어 있습니다.
  
