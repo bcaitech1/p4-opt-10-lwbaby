@@ -43,7 +43,7 @@
  
  f1 loss는 [링크](https://gist.github.com/SuperShinyEyes/dcc68a08ff8b615442e3bc6a9b55a354)의 코드를 사용하였습니다.
  
- 또한 성능 향상 효과는 볼 수 없었지만 KL divergence를 이용한 distillation loss도 구현되어 있습니다.
+ KL divergence를 이용한 distillation loss를 구현하였습니다.
  
  KL_distillation_loss는 다음과 같이 선언합니다.
  ```python3
